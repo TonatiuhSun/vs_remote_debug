@@ -1,0 +1,14 @@
+version: "2.4"
+services:
+
+  qpp:
+    mem_limit: "1024m"
+    memswap_limit: "-1"
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: web_l
+    ports:
+      - "8000:8000"
+      - "5005:5005"
+    command: bash -c "python3 -uB -m debugpy --listen 0.0.0.0:5005 -m src.web.app"
